@@ -1,0 +1,90 @@
+import random
+stages = [
+    '''  +---+
+  |   |
+  O   |
+ /|\\  |
+ / \\  |
+      |
+=========''',
+    '''  +---+
+  |   |
+  O   |
+ /|\\  |
+ /    |
+      |
+=========''',
+    '''  +---+
+  |   |
+  O   |
+ /|\\  |
+      |
+      |
+=========''',
+    '''  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''',
+    '''  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========''',
+    '''  +---+
+  |   |
+      |
+      |
+      |
+      |
+========='''
+]
+
+# Word list
+word_list = ['Yatharth', 'Madhavi','Sarvesh','Pooja','Priyanka','Nitin','Pravin','Prasanna','Sarvesh',
+             'Monica','Ansh','Sunil','Aarna','Rukma','Aai','Babi']
+
+# Select a random word and initialize variables
+chosen_word = random.choice(word_list).lower()  # Standardize to lowercase
+lives = len(stages) - 1  # Dynamically match the number of lives with stages
+game_over = False
+display = "-" * len(chosen_word)  # Placeholders for the word
+
+print("Welcome to Hangman!")  # Add an intro message
+print(display)  # Display placeholder word
+
+# Main game loop
+while not game_over:
+    guess = input('Guess a letter: ').lower()  # Standardize input to lowercase
+
+    # Check guessed letter
+    new_display = ""
+    for index, letter in enumerate(chosen_word):
+        if letter == guess:
+            new_display += letter  # Update new_display with correct guess
+        else:
+            new_display += display[index]  # Keep previously correct guesses in place
+
+    display = new_display  # Update the main display with the new display
+    print(display)
+
+    # Check if guess is incorrect
+    if guess not in chosen_word:
+        lives -= 1
+        print(f"Wrong guess! Lives remaining: {lives}")
+        if lives < 0:
+            game_over = True
+            print(f"You lose! The correct word was: {chosen_word}")
+
+    # Check if the player has won
+    if "-" not in display:
+        game_over = True
+        print("Congratulations! You win!")
+
+    # Display the current stage
+    if lives >= 0:
+        print(stages[lives])
