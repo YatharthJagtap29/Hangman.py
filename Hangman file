@@ -45,8 +45,8 @@ stages = [
 ]
 
 # Word list
-word_list = ['Yatharth', 'Madhavi','Sarvesh','Pooja','Priyanka','Nitin','Pravin','Prasanna','Sarvesh',
-             'Monica','Ansh','Sunil','Aarna','Rukma','Aai','Babi']
+word_list = ['Yatharth','Sunil', 'Madhavi','Sarvesh','Pooja','Priyanka','Nitin','Pravin','Prasanna',
+             'Monica','Ansh','Aarna','Rukma','Aai','Babi']
 
 # Select a random word and initialize variables
 chosen_word = random.choice(word_list).lower()  # Standardize to lowercase
